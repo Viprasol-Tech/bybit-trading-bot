@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bybit-trading-bot"
-version = "0.1.0"
-description = "Bybit API trading bot with HMAC-SHA256 v5 auth and paper trading — by Viprasol Tech."
+version = "0.2.0"
+description = "Bybit v5 trading bot: HMAC-SHA256 auth, order/kline/wallet builders, SMA strategy, and a paper backtester — by Viprasol Tech."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
@@ -17,6 +17,8 @@ keywords = [
   "crypto",
   "hmac",
   "paper-trading",
+  "backtesting",
+  "algorithmic-trading",
   "python",
 ]
 classifiers = [
