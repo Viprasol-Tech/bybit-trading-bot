@@ -75,12 +75,16 @@ client = BybitClient("api-key", "api-secret", base_url=TESTNET_BASE_URL)
 
 # A signed limit order with time-in-force — returns a PreparedRequest, sends nothing.
 order = client.place_order(
-    "BTCUSDT", Side.BUY, OrderType.LIMIT, "0.01",
-    price="30000", time_in_force=TimeInForce.POST_ONLY,
+    "BTCUSDT",
+    Side.BUY,
+    OrderType.LIMIT,
+    "0.01",
+    price="30000",
+    time_in_force=TimeInForce.POST_ONLY,
 )
-print(order.method, order.url)        # POST https://api-testnet.bybit.com/v5/order/create
-print(order.headers["X-BAPI-SIGN"])   # lowercase hex HMAC-SHA256
-print(order.body)                     # compact signed JSON
+print(order.method, order.url)  # POST https://api-testnet.bybit.com/v5/order/create
+print(order.headers["X-BAPI-SIGN"])  # lowercase hex HMAC-SHA256
+print(order.body)  # compact signed JSON
 
 # Market data and account reads are just as easy:
 candles = client.get_kline("BTCUSDT", Interval.H1, limit=200)
@@ -92,7 +96,7 @@ wallet = client.get_wallet_balance(coin="USDT")
 ```python
 from bybit_trading_bot import SmaCrossStrategy, run_backtest
 
-closes = [30_000 + 50 * i for i in range(300)]          # your price series
+closes = [30_000 + 50 * i for i in range(300)]  # your price series
 result = run_backtest(closes, SmaCrossStrategy(10, 30), fee_rate=0.001)
 
 print(f"Return:   {result.total_return:.2%}")
@@ -105,7 +109,7 @@ print(f"Sharpe:   {result.sharpe():.2f}")
 ```python
 from bybit_trading_bot import Settings
 
-settings = Settings.from_env()          # reads BYBIT_API_KEY, BYBIT_TESTNET, ...
+settings = Settings.from_env()  # reads BYBIT_API_KEY, BYBIT_TESTNET, ...
 client = BybitClient(settings.api_key, settings.api_secret, base_url=settings.base_url)
 ```
 
